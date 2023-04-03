@@ -1,0 +1,24 @@
+﻿@model EmployeePortal.Web.Models.GreetingViewModel
+
+@{
+    Layout = null;
+}
+
+
+
+<head>
+    <title>Allah is Greatest of all</title>
+</head>
+<body>
+<div>
+    @Model.Message!, @Model.Name says!
+    @for (int i = 0; i < 1000; i++)
+    {
+        <div class="card-body">
+            Alhamdulillah!
+            Astaghfirullah!
+        </div>
+
+    }
+</div>
+</body>
