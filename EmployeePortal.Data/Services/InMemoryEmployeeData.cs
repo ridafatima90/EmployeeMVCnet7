@@ -25,4 +25,9 @@ public class InMemoryEmployeeData : IEmployeeData
         return Employees.OrderBy(e => e.Name);
 
     }
+
+    public Employee Get(int id)
+    {
+        return Employees.FirstOrDefault(e => e.Id == id);
+    }
 }

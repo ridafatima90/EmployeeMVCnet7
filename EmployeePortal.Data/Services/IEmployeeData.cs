@@ -6,4 +6,5 @@ namespace EmployeePortal.Data.Services;
 public interface IEmployeeData
 {
     IOrderedEnumerable<Employee> GetAll();
+    Employee Get(int id);
 }

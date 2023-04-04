@@ -1,0 +1,14 @@
+﻿
+@using EmployeePortal.Data.Models
+@model IEnumerable<EmployeePortal.Data.Models.Employee>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Allah has power over all things</p>
+</div>
+
+<div>There are @Model.Count() employees currently!</div>
+
