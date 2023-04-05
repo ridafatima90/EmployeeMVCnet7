@@ -24,5 +24,6 @@ namespace EmployeePortal.Web.API
             var model = _db.GetAll();
             return model;
         }
+        
     }
 }

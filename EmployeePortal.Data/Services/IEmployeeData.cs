@@ -5,6 +5,9 @@ namespace EmployeePortal.Data.Services;
 
 public interface IEmployeeData
 {
-    IOrderedEnumerable<Employee> GetAll();
+    IEnumerable<Employee> GetAll();
     Employee Get(int id);
+    void Add(Employee employee);
+    void Update(Employee employee);
+    void Delete(int id);
 }
