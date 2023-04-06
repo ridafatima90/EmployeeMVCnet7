@@ -21,7 +21,11 @@ namespace EmployeePortal.Web.Controllers
         public ActionResult Details(int id)
         {
             var model = _db.Get(id);
-            return model == null ? View("NotFound") : View(model);
+            if (model == null)
+            {
+                return View("NotFound");
+            }
+            return View(model);
         }
 
         [HttpGet]
@@ -37,9 +41,9 @@ namespace EmployeePortal.Web.Controllers
             if (ModelState.IsValid)
             {
                 _db.Add(employee);
+                TempData["Message"] = "Allah is the greatest of all";
                 return RedirectToAction("Details", new { id = employee.Id });
             }
-
             return View();
         }
 
@@ -57,7 +61,7 @@ namespace EmployeePortal.Web.Controllers
             if (ModelState.IsValid)
             {
                 _db.Update(employee);
-                return RedirectToAction("Details", new { id = employee.Id });
+                return RedirectToAction("Index", new { id = employee.Id });
             }
 
             return View(employee);

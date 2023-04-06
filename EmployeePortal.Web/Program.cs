@@ -1,16 +1,24 @@
-using Autofac;
 using EmployeePortal.Data.Services;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddDbContext<EmployeeDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDbContext"));
+
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 
 builder.Services.AddScoped<IEmployeeData, InMemoryEmployeeData>();
+// builder.Services.AddScoped<IEmployeeData, SqlEmployeeData>();
 
 
 builder.Services.AddAuthorization(options =>

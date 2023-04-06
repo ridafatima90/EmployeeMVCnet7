@@ -1,4 +1,3 @@
-using System.Collections;
 using EmployeePortal.Data.Models;
 
 namespace EmployeePortal.Data.Services;
@@ -11,12 +10,12 @@ public class InMemoryEmployeeData : IEmployeeData
     {
         _employees = new List<Employee>()
         {
-            new Employee()
-                { Id = 1, Name = "John Cena", EmployeeType = EmployeeType.FreeLancer, Gender = "Male", Salary = 13000 },
-            new Employee()
-                { Id = 2, Name = "June Cena", EmployeeType = EmployeeType.FullTime, Gender = "Female", Salary = 12000 },
-            new Employee()
-                { Id = 3, Name = "Martin Campbell", EmployeeType = EmployeeType.PartTime, Gender = "Male", Salary = 9000 },
+            new Employee
+                { Id = 1, Name = "John Cena", EmpType = EmployeeType.FreeLancer, Gender = "Male", Salary = 13000 },
+            new Employee
+                { Id = 2, Name = "June Cena", EmpType = EmployeeType.FullTime, Gender = "Female", Salary = 12000 },
+            new Employee
+                { Id = 3, Name = "Martin Campbell", EmpType = EmployeeType.PartTime, Gender = "Male", Salary = 9000 },
         };
     }
     
@@ -33,22 +32,24 @@ public class InMemoryEmployeeData : IEmployeeData
 
     public void Add(Employee employee)
     {
-        _employees.Add(employee);
         employee.Id = _employees.Max(e => e.Id) + 1;
+        _employees.Add(employee);
     }
 
     public void Update(Employee employee)
     {
         var existing = Get(employee.Id);
+        if (existing == null) return;
         existing.Name = employee.Name;
         existing.Gender = employee.Gender;
-        existing.EmployeeType = employee.EmployeeType;
+        existing.EmpType = employee.EmpType;
         existing.Salary = employee.Salary;
     }
 
     public void Delete(int id)
     {
         var employee = Get(id);
-        _employees.Remove(employee);
+        if(employee != null)
+         _employees.Remove(employee);
     }
 }
